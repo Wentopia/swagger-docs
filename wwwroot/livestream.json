@@ -1,0 +1,225 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Cloud Services Team - Open API Documentation",
+    "description": "The set of production APIs managed and hosted by the Cloud Services Team",
+    "contact": {
+      "name": "Cloud Services Team",
+      "url": "https://github.com/ACMEAtronOmatic/swagger-docs/issues",
+      "email": "cloud-services-aaaad2qfvlaol7s3ab4ud5kwxu@acmeaom.slack.com"
+    },
+    "version": "v3.0.2"
+  },
+  "servers": [
+    {
+      "url": "https://livestreams.acmeaom.com",
+      "description": "Live Streams APIs Host"
+    }
+  ],
+  "paths": {
+    "/v2/livestreams/published/{streamId}/viewers/{viewerId}": {
+      "put": {
+        "tags": [
+          "LiveStreams_[livestreams.acmeaom.com]"
+        ],
+        "summary": "Add viewer to stream",
+        "description": "Add viewer to stream",
+        "operationId": "AddViewerV2Api",
+        "parameters": [
+          {
+            "name": "streamId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "viewerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request was accepted and will be handled asynchronously.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "x-ms-summary": "The request was accepted."
+          },
+          "400": {
+            "description": "The request body or headers were bad.",
+            "x-ms-summary": "Bad request"
+          },
+          "408": {
+            "description": "The request failed to complete within the configured timeout.",
+            "x-ms-summary": "Timed out"
+          },
+          "500": {
+            "description": "An unexpected failure occurred on the server.",
+            "x-ms-summary": "Internal server error"
+          }
+        },
+        "x-ms-visibility": "important"
+      }
+    },
+    "/v2/livestreams/published ": {
+      "get": {
+        "tags": [
+          "LiveStreams_[livestreams.acmeaom.com]"
+        ],
+        "summary": "Get published livestreams",
+        "description": "Get published livestreams",
+        "operationId": "GetLiveStreamsV2Api",
+        "responses": {
+          "200": {
+            "description": "This returns the response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/liveStreamV2"
+                }
+              }
+            },
+            "x-ms-summary": "The response"
+          },
+          "408": {
+            "description": "The request failed to complete within the configured timeout.",
+            "x-ms-summary": "Timed out"
+          },
+          "429": {
+            "description": "The client has made too many requests.",
+            "x-ms-summary": "Too many requests"
+          },
+          "500": {
+            "description": "An unexpected failure occurred on the server.",
+            "x-ms-summary": "Internal server error"
+          }
+        },
+        "x-ms-visibility": "important"
+      }
+    },
+    "/v2/livestreams/published/{streamId}/viewers/count": {
+      "get": {
+        "tags": [
+          "LiveStreams_[livestreams.acmeaom.com]"
+        ],
+        "summary": "Get viewer count by stream id",
+        "description": "Get viewer count by stream id",
+        "operationId": "GetViewerCountV2Api",
+        "parameters": [
+          {
+            "name": "streamId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This returns the response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/liveStreamV2"
+                }
+              }
+            },
+            "x-ms-summary": "The response"
+          },
+          "408": {
+            "description": "The request failed to complete within the configured timeout.",
+            "x-ms-summary": "Timed out"
+          },
+          "429": {
+            "description": "The client has made too many requests.",
+            "x-ms-summary": "Too many requests"
+          },
+          "500": {
+            "description": "An unexpected failure occurred on the server.",
+            "x-ms-summary": "Internal server error"
+          }
+        },
+        "x-ms-visibility": "important"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "liveStreamV2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "httplivestreamurl": {
+            "type": "string"
+          },
+          "thumbnailimage52": {
+            "type": "string"
+          },
+          "thumbnailimage104": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "locality": {
+            "type": "string"
+          },
+          "currentviewercount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "approximateviewercount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lastupdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "streamerusername": {
+            "type": "string"
+          },
+          "streamerorganization": {
+            "type": "string"
+          },
+          "streamerfirstname": {
+            "type": "string"
+          },
+          "streamelLastname": {
+            "type": "string"
+          },
+          "streamerfacebookurl": {
+            "type": "string"
+          },
+          "streamertwitterhandle": {
+            "type": "string"
+          },
+          "streameryouTtubeurl": {
+            "type": "string"
+          },
+          "streamerwebsiteurl": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
